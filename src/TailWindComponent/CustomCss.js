@@ -7,6 +7,9 @@ export default function CustomCss() {
             <article className="bg-gray-500 p-5 shadow-lg">
                 <p className="text-4xl text-white">CustomCss</p>
                 <p className="content">lorem ipsum dolor</p>
+                <button className="p-5 animation-scale">
+                    Hover me
+                </button>
             </article>
         </div>
     )
