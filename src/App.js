@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import BaiTapLayoutTailwindcss from './TailWindComponent/BaiTapLayoutTailwindcss';
+import BorderRadiusDemo from './TailWindComponent/BorderRadiusDemo';
+import CustomCss from './TailWindComponent/CustomCss';
+import DemoGrid from './TailWindComponent/DemoGrid';
+import FlexDemo from './TailWindComponent/FlexDemo';
+import PaddingMarginDemo from './TailWindComponent/PaddingMarginDemo';
+import ResponsiveDemo from './TailWindComponent/ResponsiveDemo';
+import TextBackGroundDemo from './TailWindComponent/TextBackGroundDemo';
+import WidthHeightDemo from './TailWindComponent/WidthHeightDemo';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <DemoGrid /> */}
+      {/* <PaddingMarginDemo /> */}
+      {/* <WidthHeightDemo /> */}
+      {/* <FlexDemo /> */}
+      {/* <TextBackGroundDemo /> */}
+      {/* <BorderRadiusDemo /> */}
+      {/* <ResponsiveDemo /> */}
+      {/* <CustomCss /> */}
+      <BaiTapLayoutTailwindcss />
     </div>
   );
 }
