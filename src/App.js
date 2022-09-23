@@ -5,6 +5,7 @@ import Include from './Lodash/Include';
 import JoinDemo from './Lodash/JoinDemo';
 import LastFirstLodash from './Lodash/LastFirstLodash';
 import SortLodash from './Lodash/SortLodash';
+import UniqLodash from './Lodash/UniqLodash';
 import BaiTapLayoutTailwindcss from './TailWindComponent/BaiTapLayoutTailwindcss';
 import BorderRadiusDemo from './TailWindComponent/BorderRadiusDemo';
 import CustomCss from './TailWindComponent/CustomCss';
@@ -32,7 +33,8 @@ function App() {
       {/* <ChunkLodash /> */}
       {/* <FillLodash /> */}
       {/* <SortLodash /> */}
-      <Include />
+      {/* <Include /> */}
+      <UniqLodash />
     </div>
   );
 }
