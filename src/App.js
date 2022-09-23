@@ -1,7 +1,8 @@
 import './App.css';
 import ChunkLodash from './Lodash/ChunkLodash';
 import FillLodash from './Lodash/FillLodash';
-import Include from './Lodash/Include';
+import FlattenLodash from './Lodash/FlattenLodash';
+import Includes from './Lodash/IncludesLodash';
 import JoinDemo from './Lodash/JoinDemo';
 import LastFirstLodash from './Lodash/LastFirstLodash';
 import SortLodash from './Lodash/SortLodash';
@@ -33,8 +34,9 @@ function App() {
       {/* <ChunkLodash /> */}
       {/* <FillLodash /> */}
       {/* <SortLodash /> */}
-      {/* <Include /> */}
-      <UniqLodash />
+      {/* <Includes /> */}
+      {/* <UniqLodash /> */}
+      <FlattenLodash />
     </div>
   );
 }
