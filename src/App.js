@@ -1,4 +1,5 @@
 import './App.css';
+import JoinDemo from './Lodash/JoinDemo';
 import BaiTapLayoutTailwindcss from './TailWindComponent/BaiTapLayoutTailwindcss';
 import BorderRadiusDemo from './TailWindComponent/BorderRadiusDemo';
 import CustomCss from './TailWindComponent/CustomCss';
@@ -20,7 +21,8 @@ function App() {
       {/* <BorderRadiusDemo /> */}
       {/* <ResponsiveDemo /> */}
       {/* <CustomCss /> */}
-      <BaiTapLayoutTailwindcss />
+      {/* <BaiTapLayoutTailwindcss /> */}
+      <JoinDemo />
     </div>
   );
 }
