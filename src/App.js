@@ -1,5 +1,6 @@
 import './App.css';
 import ChunkLodash from './Lodash/ChunkLodash';
+import FillLodash from './Lodash/FillLodash';
 import JoinDemo from './Lodash/JoinDemo';
 import LastFirstLodash from './Lodash/LastFirstLodash';
 import BaiTapLayoutTailwindcss from './TailWindComponent/BaiTapLayoutTailwindcss';
@@ -26,7 +27,8 @@ function App() {
       {/* <BaiTapLayoutTailwindcss /> */}
       {/* <JoinDemo /> */}
       {/* <LastFirstLodash /> */}
-      <ChunkLodash />
+      {/* <ChunkLodash /> */}
+      <FillLodash />
     </div>
   );
 }
