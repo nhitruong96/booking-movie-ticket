@@ -1,5 +1,6 @@
 import './App.css';
 import ChunkLodash from './Lodash/ChunkLodash';
+import CompareObjectArray from './Lodash/CompareObjectArray';
 import FillLodash from './Lodash/FillLodash';
 import FlattenLodash from './Lodash/FlattenLodash';
 import Includes from './Lodash/IncludesLodash';
@@ -36,7 +37,8 @@ function App() {
       {/* <SortLodash /> */}
       {/* <Includes /> */}
       {/* <UniqLodash /> */}
-      <FlattenLodash />
+      {/* <FlattenLodash /> */}
+      <CompareObjectArray />
     </div>
   );
 }
