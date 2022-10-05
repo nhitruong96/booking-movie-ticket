@@ -14,18 +14,17 @@ export default function Home(props) {
     //props.location
     //props.match.params
 
-    const renderFilms = () => {
-        return arrFilm.map((item, index) => {
-            return <Film key={index} />
-        })
-    }
+    // const renderFilms = () => {
+    //     return arrFilm.map((item, index) => {
+    //         return <Film key={index} />
+    //     })
+    // }
 
     return (
-
         <div>
-            <MultipleRowSlick />
             <section className="text-gray-600 body-font">
                 <div className="container px-5 py-24 mx-auto">
+                    <MultipleRowSlick arrFilm={arrFilm}/>
                     {/* <div className="flex flex-wrap -m-4" style={{ justifyContent: 'center'}}>
                         {renderFilms()}
                     </div> */}
