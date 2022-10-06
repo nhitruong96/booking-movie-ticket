@@ -2,7 +2,7 @@ import React from 'react'
 import HomeMenu from './HomeMenu/HomeMenu'
 import { useSelector, useDispatch } from 'react-redux'
 import Film from '../../components/Film/Film'
-import MultipleRowSlick from '../../components/Film/RSlick/MultipleRowSlick'
+import MultipleRowSlick from '../../components/RSlick/MultipleRowSlick'
 import { useEffect } from 'react'
 import { getFilmListAction } from '../../redux/actions/FilmManagementAction'
 

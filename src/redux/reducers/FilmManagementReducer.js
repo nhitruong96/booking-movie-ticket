@@ -1,4 +1,4 @@
-import { SET_FILM_LIST } from "../actions/types/FilmManagementType"
+import { SET_FILM_COMING_SOON, SET_FILM_LIST, SET_FILM_NOW_PLAYING } from "../actions/types/FilmManagementType"
 
 const stateDefault = {
     arrFilm: [
@@ -30,7 +30,10 @@ const stateDefault = {
             "dangChieu": false,
             "sapChieu": true
         },
-    ]
+    ],
+    dangChieu: true,
+    sapChieu: false,
+    arrFilmDefault: []
 }
 
 export const FilmManagementReducer = (state = stateDefault, action) => {
@@ -38,6 +41,21 @@ export const FilmManagementReducer = (state = stateDefault, action) => {
 
         case SET_FILM_LIST: {
             state.arrFilm = action.arrFilm;
+            state.arrFilmDefault = state.arrFilm;
+            return { ...state }
+        }
+
+        case SET_FILM_NOW_PLAYING: {
+            state.dangChieu =! state.dangChieu;
+
+            state.arrFilm = state.arrFilmDefault.filter(film => film.dangChieu === state.dangChieu);
+            return { ...state }
+        }
+
+        case SET_FILM_COMING_SOON: {
+            state.sapChieu =! state.sapChieu;
+
+            state.arrFilm = state.arrFilmDefault.filter(film => film.sapChieu === state.sapChieu);
             return { ...state }
         }
 
