@@ -1,3 +1,4 @@
+import { SET_FILM_LIST } from "../actions/types/FilmManagementType"
 
 const stateDefault = {
     arrFilm: [
@@ -34,6 +35,11 @@ const stateDefault = {
 
 export const FilmManagementReducer = (state = stateDefault, action) => {
     switch (action.type) {
+
+        case SET_FILM_LIST: {
+            state.arrFilm = action.arrFilm;
+            return { ...state }
+        }
 
         default: return { ...state }
     }

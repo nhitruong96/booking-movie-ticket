@@ -31,7 +31,7 @@ export default class MultipleRowSlick extends Component {
     renderFilms = () => {
         return this.props.arrFilm.map((item, index) => {
             return <div key={index} className={`${styleSlick['width-item']}`}>
-                 <Film />
+                 <Film film={item}/>
             </div>
         })
     }
