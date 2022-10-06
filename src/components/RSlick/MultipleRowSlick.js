@@ -3,9 +3,8 @@ import Slider from "react-slick";
 import styleSlick from './MultipleRowSlick.module.css'
 import Film from "../Film/Film";
 import Film_Flip from "../Film/Film_Flip";
-import { RFC_2822 } from "moment";
-import { useDispatch } from "react-redux";
-import { SET_FILM_COMING_SOON, SET_FILM_NOW_PLAYING } from "../../redux/actions/types/FilmManagementType";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_FILM_NOW_PLAYING, SET_FILM_COMING_SOON } from "../../redux/actions/types/FilmManagementType";
 
 function SampleNextArrow(props) {
 
@@ -35,6 +34,8 @@ const MultipleRowSlick = (props) => {
 
     const dispatch = useDispatch();
 
+    const { dangChieu, sapChieu } = useSelector(state => state.FilmManagementReducer)
+
     const renderFilms = () => {
         return props.arrFilm.slice(0, 12).map((item, index) => {
             // return <div key={index} className={`${styleSlick['width-item']}`}>
@@ -44,6 +45,11 @@ const MultipleRowSlick = (props) => {
             </div>
         })
     }
+
+    let activeClassDC = dangChieu === true ? 'active_Film' : 'non_active_Film';
+
+    let activeClassSC = sapChieu === true ? 'active_Film' : 'non_active_Film';
+
 
     const settings = {
         className: "center variable-width",
@@ -63,13 +69,13 @@ const MultipleRowSlick = (props) => {
 
     return (
         <div>
-            <button type="button" class="px-8 py-3 font-semibold border rounded dark:bg-gray-800 text-white mr-2"
+            <button type="button" class={`${styleSlick[activeClassDC]} px-8 py-3 font-semibold rounded bg-white text-gray-800 border-gray-800 border mr-2`}
                 onClick={() => {
                     const action = { type: SET_FILM_NOW_PLAYING }
                     dispatch(action);
                 }}
             >NOW PLAYING</button>
-            <button type="button" class="px-8 py-3 font-semibold border rounded dark:bg-gray-800 text-white"
+            <button type="button" class={`${styleSlick[activeClassSC]} px-8 py-3 font-semibold rounded bg-white text-gray-800 border-gray-800 border`}
                 onClick={() => {
                     const action = { type: SET_FILM_COMING_SOON }
                     dispatch(action);

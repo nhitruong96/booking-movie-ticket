@@ -32,7 +32,7 @@ const stateDefault = {
         },
     ],
     dangChieu: true,
-    sapChieu: false,
+    sapChieu: true,
     arrFilmDefault: []
 }
 
