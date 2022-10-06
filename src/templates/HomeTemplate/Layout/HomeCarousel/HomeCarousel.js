@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { getCarouselAction } from '../../../../redux/actions/CarouselActions';
+import './HomeCarousel.css';
 
 const contentStyle = {
     height: '600px',
@@ -25,11 +26,11 @@ export default function HomeCarousel(props) {
     useEffect(() => {
         //1 action = {type:'', data: }
         //2 (need to install middleware): callBackFunction(dispatch)
-        
+
         // const action = getCarouselAction(1);
         // dispatch(action);
         dispatch(getCarouselAction())
-        
+
     }, []);
 
     console.log('arrImg', arrImg);
@@ -38,14 +39,14 @@ export default function HomeCarousel(props) {
         return arrImg.map((item, index) => {
             return <div key={index}>
                 <div style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }}>
-                    <img src={item.hinhAnh} className="w-full opacity-0" alt={item.hinhAnh} />
+                    <img src={item.hinhAnh} className="opacity-0" alt={item.hinhAnh} />
                 </div>
             </div>
         })
     }
 
     return (
-        <Carousel effect="fade">
+        <Carousel effect="fade" style={{ width: '100%', padding: 0, margin: 0 }}>
             {renderImg()}
         </Carousel>
     )
