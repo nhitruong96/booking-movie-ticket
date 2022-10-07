@@ -20,7 +20,7 @@ export const getCarouselAction = () => {
             const result = await filmMngService.getBannerList();
 
             //Send to rootReducer
-            console.log('result', result)
+            console.log('resultBannerList', result)
 
             dispatch({
                 type: SET_CAROUSEL,
