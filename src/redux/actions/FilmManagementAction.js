@@ -13,7 +13,7 @@ export const getFilmListAction = () => {
             const result = await filmMngService.getFilmList();
 
             //Send to rootReducer
-            console.log('result', result)
+            console.log('resultFilmList', result)
 
             //After getting data from API => redux {reducer}
             dispatch({

@@ -15,6 +15,8 @@ export default function HomeMenu(props) {
 
     const { tabPosition } = state;
 
+    console.log(props, 'propsTheaterList')
+
     return (
         <div>
             <Tabs tabPosition={tabPosition}>
