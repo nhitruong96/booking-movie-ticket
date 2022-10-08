@@ -1,5 +1,5 @@
+import { SET_FILM_DETAIL, SET_THEATER_LIST } from "./types/TheaterManagementType";
 import { theaterMngService } from "../../services/TheaterManagementService";
-import { SET_THEATER_LIST } from "./types/TheaterType";
 
 export const getTheaterListAction = () => {
 
@@ -12,9 +12,9 @@ export const getTheaterListAction = () => {
 
             const result = await theaterMngService.getTheaterList();
 
-            //Send to rootReducer
             console.log('resultTheaterList', result)
 
+            //Send to rootReducer
             if (result.status === 200) {
                 //After getting data from API => redux {reducer}
                 dispatch({
@@ -26,6 +26,28 @@ export const getTheaterListAction = () => {
         catch (errors) {
             // console.log('errors', errors)
             console.log('errors', errors.response?.data)
+        }
+    }
+}
+
+
+export const getFilmDetailAction = (id) => {
+
+    return async (dispatch) => {
+        try {
+            const result = await theaterMngService.getMovieShowtimeInfo(id);
+
+            console.log('resultFilmDetail', result);
+
+            //Get data from API => redux
+            dispatch({
+                type: SET_FILM_DETAIL,
+                filmDetail: result.data.content
+            })
+
+        }
+        catch (errors) {
+            console.log('errors', errors)
         }
     }
 }

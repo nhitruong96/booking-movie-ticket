@@ -9,6 +9,10 @@ export class TheaterManagementService extends baseService {
     getTheaterList = () => {
         return this.get(`/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${GROUPID}`)
     }
+
+    getMovieShowtimeInfo = (maPhim) => {
+        return this.get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`)
+    }
 }
 
 export const theaterMngService = new TheaterManagementService();

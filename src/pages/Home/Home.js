@@ -6,6 +6,7 @@ import MultipleRowSlick from '../../components/RSlick/MultipleRowSlick'
 import { useEffect } from 'react'
 import { getFilmListAction } from '../../redux/actions/FilmManagementAction'
 import { getTheaterListAction } from '../../redux/actions/TheaterManagementAction'
+import HomeCarousel from '../../templates/HomeTemplate/Layout/HomeCarousel/HomeCarousel'
 
 export default function Home(props) {
 
@@ -36,6 +37,8 @@ export default function Home(props) {
 
     return (
         <div>
+            <HomeCarousel />
+            
             <section className="text-gray-600 body-font">
                 <div className="container px-5 py-24 mx-auto">
                     <MultipleRowSlick arrFilm={arrFilm} />

@@ -1,1 +1,0 @@
-export const SET_THEATER_LIST = 'SET_THEATER_LIST';
