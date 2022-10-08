@@ -6,7 +6,8 @@ import { Tabs, Radio, Space } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilmDetailAction } from '../../redux/actions/TheaterManagementAction';
 import moment from 'moment/moment';
-import { StarOutlined } from '@ant-design/icons'
+import { Rate } from 'antd';
+import { NavLink } from 'react-router-dom';
 
 const { TabPane } = Tabs;
 
@@ -48,8 +49,9 @@ export default function Detail(props) {
                         </div>
                     </div>
                     <div className="col-span-4 ">
-                        <h1 style={{ marginLeft: '10%' }} className="text-green-400 text-2xl">
-                            <StarOutlined /><StarOutlined /><StarOutlined /><StarOutlined /><StarOutlined />
+                        <h1 style={{ marginLeft: '15%', color: 'rgb(74,222,128)', fontSize: '20', fontWeight: 'bold' }}>Rating</h1>
+                        <h1 style={{ marginLeft: '2%' }} className="text-green-400 text-2xl">
+                            <Rate disabled allowHalf value={filmDetail.danhGia / 2} style={{ color: '#78ed78', fontSize: 30 }} />
                         </h1>
                         <div className={`c100 p${filmDetail.danhGia * 10} big`}>
                             <span>{filmDetail.danhGia * 10}%</span>
@@ -61,16 +63,45 @@ export default function Detail(props) {
                     </div>
                 </div>
 
-                <div className="container mt-10">
-                    <Tabs tabPosition={'left'}>
-                        <TabPane tab="Tab 1" key="1">
-                            Content of Tab 1
+                <div className="container bg-white px-5 py-5 mt-20 ml-72 w-2/3">
+                    <Tabs defaultActiveKey="1" centered>
+                        <TabPane tab="Showtimes" key="1">
+                            <div>
+                                <Tabs tabPosition={'left'}>
+                                    {filmDetail.heThongRapChieu?.map((theaterBrand, index) => {
+                                        return <TabPane
+                                            tab={<div>
+                                                <img src={theaterBrand.logo} width={50} height={50} alt={theaterBrand.tenHeThongRap} />
+                                                {theaterBrand.tenHeThongRap}
+                                            </div>} key={index}>
+                                            {theaterBrand.cumRapChieu?.map((theater, index) => {
+                                                return <div className="mt-5" key={index}>
+                                                    <div className="flex flex-row">
+                                                        {<img src={theater.hinhAnh} style={{ width: 60, height: 60 }} alt={theater.tenCumRap} />}
+                                                        <div className="ml-2">
+                                                            <p style={{ fontSize: 20, fontWeight: 'bold', lineHeight: 1 }}>{theater.tenCumRap}</p>
+                                                            <p style={{ marginTop: 0 }} className="text-gray-400">{theater.diaChi}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="grid grid-cols-4">
+                                                        {theater.lichChieuPhim?.slice(0, 12).map((showtime, index) => {
+                                                            return <NavLink to="/" key={index} className="col-span-1 text-green-700 font-bold">
+                                                                {moment(showtime.ngayChieuGioChieu).format('hh:mm A')}
+                                                            </NavLink>
+                                                        })}
+                                                    </div>
+                                                </div>
+                                            })}
+                                        </TabPane>
+                                    })}
+                                </Tabs>
+                            </div>
                         </TabPane>
-                        <TabPane tab="Tab 2" key="2">
-                            Content of Tab 2
+                        <TabPane tab="Details" key="2">
+                            Details
                         </TabPane>
-                        <TabPane tab="Tab 3" key="3">
-                            Content of Tab 3
+                        <TabPane tab="Reviews" key="3">
+                            Review
                         </TabPane>
                     </Tabs>
                 </div>

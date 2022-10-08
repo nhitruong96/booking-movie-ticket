@@ -28,7 +28,7 @@ export default function HomeMenu(props) {
                     {theaterBrand.lstCumRap?.map((theater, index) => {
                         return <TabPane tab={
                             <div style={{ width: '300px', display: 'flex' }}>
-                                <img src="http://picsum.photos/100" width="50" />
+                                <img src={theaterBrand.logo} width="50" />
                                 <br />
                                 <div className="text-left ml-2">
                                     {theater.tenCumRap}
