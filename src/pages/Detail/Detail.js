@@ -1,6 +1,10 @@
 import React from 'react'
 import { Button, CustomCard } from '@tsamantanis/react-glassmorphism'
 import '@tsamantanis/react-glassmorphism/dist/index.css'
+import '../../assets/styles/circle.scss'
+import { Tabs, Radio, Space } from 'antd';
+
+const { TabPane } = Tabs;
 
 export default function Detail() {
     return (
@@ -12,9 +16,43 @@ export default function Detail() {
                 blur={20} // default blur value is 10px
                 borderRadius={0} // default border radius value is 10px
             >
-                <h1>Hello</h1>
-                <p>This is an example</p>
+                <div className="grid grid-cols-12">
+                    <div className="col-span-4 col-start-4">
+                        <div className="grid grid-cols-2">
+                            <img src="https://picsum.photos/200/350" alt="123" />
+                            <div>
+                                <p>Movie name</p>
+                                <p>Description</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-span-4 ">
+                        <div className="c100 p50 big">
+                            <span>50%</span>
+                            <div className="slice">
+                                <div className="bar"></div>
+                                <div className="fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="container mt-10">
+                    <Tabs tabPosition={'left'}>
+                        <TabPane tab="Tab 1" key="1">
+                            Content of Tab 1
+                        </TabPane>
+                        <TabPane tab="Tab 2" key="2">
+                            Content of Tab 2
+                        </TabPane>
+                        <TabPane tab="Tab 3" key="3">
+                            Content of Tab 3
+                        </TabPane>
+                    </Tabs>
+                </div>
+
             </CustomCard>
+
         </div>
     )
 }
