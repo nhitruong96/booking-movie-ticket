@@ -12,11 +12,11 @@ export default function Film_Flip(props) {
         <div className="flip-card mt-2">
             <div className="flip-card-inner">
                 <div className="flip-card-front">
-                    <img src={film.hinhAnh} alt="Avatar" style={{ width: 300, height: 300 }} />
+                    <img src={film.hinhAnh} alt={film.tenPhim} style={{ width: 300, height: 300 }} />
                 </div>
                 <div className="flip-card-back" style={{ position: 'relative', backgroundColor: 'rgba(0,0,0,.9)' }}>
                     <div style={{ position: 'absolute', top: 0, left: 0 }} >
-                        <img src={film.hinhAnh} alt="Avatar" style={{ width: 300, height: 300 }} />
+                        <img src={film.hinhAnh} alt={film.tenPhim} style={{ width: 300, height: 300 }} />
                     </div>
                     <div className="w-full h-full" style={{ position: 'absolute', backgroundColor: 'rgba(0,0,0,.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <div>

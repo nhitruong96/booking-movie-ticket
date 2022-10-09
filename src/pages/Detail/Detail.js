@@ -54,7 +54,7 @@ export default function Detail(props) {
                             <Rate disabled allowHalf value={filmDetail.danhGia / 2} style={{ color: '#78ed78', fontSize: 30 }} />
                         </h1>
                         <div className={`c100 p${filmDetail.danhGia * 10} big`}>
-                            <span>{filmDetail.danhGia * 10}%</span>
+                            <span>{filmDetail.danhGia}/10</span>
                             <div className="slice">
                                 <div className="bar"></div>
                                 <div className="fill"></div>

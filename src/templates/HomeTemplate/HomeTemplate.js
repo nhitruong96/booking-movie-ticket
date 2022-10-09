@@ -10,6 +10,7 @@ export const HomeTemplate = (props) => { //props: path, exact, Component
     return <Route {...restProps} render={(propsRoute) => {
         //props.location.props
         //props.history.props
+        //props.match.param
 
         return <Fragment>
             <Header {...propsRoute} />
