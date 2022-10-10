@@ -9,7 +9,7 @@ import { filmMngService } from "../../services/FilmManagementService";
 // }
 
 export const getCarouselAction = () => {
-    
+
     return async (dispatch) => {
         try {
             // const result = await axios({
@@ -22,10 +22,14 @@ export const getCarouselAction = () => {
             //Send to rootReducer
             console.log('resultBannerList', result)
 
-            dispatch({
-                type: SET_CAROUSEL,
-                arrImg: result.data.content
-            })
+            //Send to rootReducer
+            if (result.status === 200) {
+                //After getting data from API => redux {reducer}
+                dispatch({
+                    type: SET_CAROUSEL,
+                    arrImg: result.data.content
+                })
+            }
         }
         catch (errors) {
             console.log('errors', errors)

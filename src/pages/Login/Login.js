@@ -1,8 +1,34 @@
 import React from 'react'
+import { useFormik } from 'formik';
+import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginAction } from '../../redux/actions/UserManagementAction';
 
 export default function Login(props) {
+
+  const dispatch = useDispatch();
+
+  const { userLogin } = useSelector(state => state.UserManagementReducer);
+
+  console.log('userLogin', userLogin);
+
+  const formik = useFormik({
+    initialValues: {
+      taiKhoan: '',
+      matKhau: '',
+    },
+    onSubmit: values => {
+
+      const action = loginAction(values);
+      dispatch(action);
+
+      console.log('value', values);
+    },
+  });
+
+
   return (
-    <div className="lg:w-1/2 xl:max-w-screen-sm">
+    <form onSubmit={formik.handleSubmit} className="lg:w-1/2 xl:max-w-screen-sm">
       <div className="py-12 bg-indigo-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
         <div className="cursor-pointer flex items-center">
           <div>
@@ -15,17 +41,17 @@ export default function Login(props) {
               </g>
             </svg>
           </div>
-          <div className="text-2xl text-indigo-800 tracking-wide ml-2 font-semibold">blockify</div>
+          <div className="text-2xl text-indigo-800 tracking-wide ml-2 font-semibold">Cinemagic</div>
         </div>
       </div>
       <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
         <h2 className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
               xl:text-bold">Log in</h2>
         <div className="mt-12">
-          <form>
+          <div>
             <div>
-              <div className="text-sm font-bold text-gray-700 tracking-wide">Email Address</div>
-              <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type placeholder="mike@gmail.com" />
+              <div className="text-sm font-bold text-gray-700 tracking-wide">Username</div>
+              <input name="taiKhoan" onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Enter your username" />
             </div>
             <div className="mt-8">
               <div className="flex justify-between items-center">
@@ -39,7 +65,7 @@ export default function Login(props) {
                   </a>
                 </div>
               </div>
-              <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type placeholder="Enter your password" />
+              <input name="matKhau" type="password" onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Enter your password" />
             </div>
             <div className="mt-10">
               <button className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
@@ -48,12 +74,12 @@ export default function Login(props) {
                 Log In
               </button>
             </div>
-          </form>
+          </div>
           <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
-            Don't have an account ? <a className="cursor-pointer text-indigo-600 hover:text-indigo-800">Sign up</a>
+            Don't have an account ? <NavLink to="/register" className="cursor-pointer text-indigo-600 hover:text-indigo-800">Sign up</NavLink>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   )
 }

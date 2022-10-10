@@ -15,11 +15,14 @@ export const getFilmListAction = () => {
             //Send to rootReducer
             console.log('resultFilmList', result)
 
-            //After getting data from API => redux {reducer}
-            dispatch({
-                type: SET_FILM_LIST,
-                arrFilm: result.data.content
-            })
+            //Send to rootReducer
+            if (result.status === 200) {
+                //After getting data from API => redux {reducer}
+                dispatch({
+                    type: SET_FILM_LIST,
+                    arrFilm: result.data.content
+                })
+            }
         }
         catch (errors) {
             console.log('errors', errors)
