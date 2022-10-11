@@ -3,7 +3,7 @@ import { Carousel } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { getCarouselAction } from '../../../../redux/actions/CarouselActions';
+import { getCarouselAction } from '../../../../redux/actions/CarouselAction';
 import './HomeCarousel.css';
 
 const contentStyle = {
