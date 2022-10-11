@@ -1,10 +1,28 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { getTicketRoomDetailAction } from '../../redux/actions/BookingManagementAction';
 import style from './Checkout.module.css'
 
 export default function Checkout(props) {
 
   const { userLogin } = useSelector(state => state.UserManagementReducer);
+
+  const { ticketRoomDetail } = useSelector(state => state.BookingManagementReducer);
+  // console.log('ticketRoomDetail', ticketRoomDetail);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    //Call function create 1 async function
+    // let { id } = props.match.params; //id from App.js
+    const action = getTicketRoomDetailAction(props.match.params.id);
+    //Dispatch function to reducer
+    //dispatch(id)
+    dispatch(action);
+  }, []);
+
+  console.log('ticketRoomDetail', ticketRoomDetail);
 
   return (
 

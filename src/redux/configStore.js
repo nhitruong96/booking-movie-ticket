@@ -4,6 +4,7 @@ import { CarouselReducer } from './reducers/CarouselReducer';
 import { FilmManagementReducer } from './reducers/FilmManagementReducer';
 import { TheaterManagementReducer } from './reducers/TheaterManagementReducer';
 import { UserManagementReducer } from './reducers/UserManagementReducer';
+import { BookingManagementReducer } from './reducers/BookingManagementReducer';
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
     CarouselReducer, // CarouselReducer: CarouselReducer
     FilmManagementReducer,
     TheaterManagementReducer,
-    UserManagementReducer
+    UserManagementReducer,
+    BookingManagementReducer
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));

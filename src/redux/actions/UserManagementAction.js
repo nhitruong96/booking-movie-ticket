@@ -10,6 +10,7 @@ export const loginAction = (loginInfo) => {
             //Getting data from API
             const result = await userMngService.login(loginInfo);
 
+            console.log('resultUserLogin', result)
             //After getting data from API => redux {reducer}
             // if (result.data.statusCode === 200) {
             if (result.status === 200) {
@@ -21,7 +22,6 @@ export const loginAction = (loginInfo) => {
                 history.goBack();
             }
 
-            console.log('resultUserLogin', result)
         } catch (error) {
             console.log('error', error.response?.data)
         }
