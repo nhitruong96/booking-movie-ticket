@@ -1,4 +1,5 @@
 import { bookingMngService } from "../../services/BookingManagementService";
+import { BookTicketInfo } from "../../_core/models/BookTicketInfo";
 import { SET_TICKET_ROOM_DETAIL } from "./types/BookingManagementType";
 
 export const getTicketRoomDetailAction = (scheduleCode) => {
@@ -17,6 +18,19 @@ export const getTicketRoomDetailAction = (scheduleCode) => {
             }
         }
         catch (error) {
+            console.log('error', error);
+            console.log('error', error.response?.data);
+        }
+    }
+}
+
+export const bookTicketAction = (bookTicketInfo = new BookTicketInfo()) => {
+
+    return async (dispatch) => {
+        try {
+            const result = await bookingMngService.bookTicket(bookTicketInfo);
+            console.log(result.data.content);
+        } catch (error) {
             console.log('error', error);
             console.log('error', error.response?.data);
         }

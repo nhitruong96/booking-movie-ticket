@@ -3,7 +3,7 @@ import { TicketRoomDetail } from "../../_core/models/TicketRoomDetail";
 
 const stateDefault = {
     ticketRoomDetail: new TicketRoomDetail(),
-    seatBookingList: [{ giaVe: 75000, loaiGhe: "Thuong", maGhe: 47450, maRap: 451, stt: "50", tenGhe: "50" }]
+    seatBookingList: []
 }
 
 export const BookingManagementReducer = (state = stateDefault, action) => {
