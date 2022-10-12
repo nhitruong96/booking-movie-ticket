@@ -1,7 +1,8 @@
 import { SET_TICKET_ROOM_DETAIL } from "../actions/types/BookingManagementType";
+import { TicketRoomDetail } from "../../_core/models/TicketRoomDetail";
 
 const stateDefault = {
-    ticketRoomDetail: {}
+    ticketRoomDetail: new TicketRoomDetail()
 }
 
 export const BookingManagementReducer = (state = stateDefault, action) => {

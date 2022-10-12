@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { getTicketRoomDetailAction } from '../../redux/actions/BookingManagementAction';
 import style from './Checkout.module.css'
+import './Checkout.css'
+import { CloseOutlined } from '@ant-design/icons'
 
 export default function Checkout(props) {
 
@@ -24,26 +26,44 @@ export default function Checkout(props) {
 
   console.log('ticketRoomDetail', ticketRoomDetail);
 
-  return (
+  const { thongTinPhim, danhSachGhe } = ticketRoomDetail;
 
+  const renderSeats = () => {
+    return danhSachGhe.map((seat, index) => {
+
+      let classSeatVip = seat.loaiGhe === 'Vip' ? 'seatVip' : '';
+      let classSeatBooked = seat.daDat === true ? 'seatBooked' : '';
+
+      return <Fragment key={index}>
+        <button disable={seat.daDat} className={`seat ${classSeatVip} ${classSeatBooked} text-center`}>
+          {seat.daDat ? <CloseOutlined style={{marginBottom: 7.5, fontWeight: 'bold'}} /> : seat.stt}
+        </button>
+        {(index + 1) % 16 === 0 ? <br /> : ''}
+      </Fragment>
+    })
+  }
+
+  return (
     <div className="min-h-screen mt-5" style={{ minHeight: '100vh' }}>
       <div className="grid grid-cols-12">
         <div className="col-span-9">
           <div className="flex flex-col items-center mt-5">
             <div className="bg-black" style={{ width: '80%', height: 15 }}>
-
             </div>
             <div className={`${style[`trapezoid`]} text-center`}>
               <h3 className="mt-2 text-black">Screen</h3>
+            </div>
+            <div>
+              {renderSeats()}
             </div>
           </div>
         </div>
         <div className="col-span-3">
           <h3 className="text-green-400 text-center text-2xl">0 USD</h3>
           <hr />
-          <h3 className="text-xl mt-2">Lat mat 48h</h3>
-          <p>Address: BHD Star-Vincom 3/2</p>
-          <p>Ngay chieu: 04/25/2022 - 12:05 RAAP 5</p>
+          <h3 className="text-xl mt-2">{thongTinPhim.tenPhim}</h3>
+          <p>Address: {thongTinPhim.diaChi} - {thongTinPhim.tenRap}</p>
+          <p>Showtime: {thongTinPhim.ngayChieu} - {thongTinPhim.gioChieu}</p>
           <hr />
           <div className="flex flex-row my-5">
             <div className="w-4/5">
