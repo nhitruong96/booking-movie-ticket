@@ -1,25 +1,39 @@
 /* normal seat */
 .seat {
-    width: 35px;
-    height: 35px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 15px;
-    background-color: rgb(123, 122, 122);
-    color: #fff;
-  }
-  
-  .seatBooked {
-    background-color: rgb(232, 76, 76);
-    cursor: no-drop;
-  }
-  
-  .seatBooking {
-    background-color: rgb(18, 176, 18) !important;
-  }
-  
-  .seatVip {
-    background-color: rgb(228, 74, 8);
-  }
-  
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
+  background-color: rgb(29, 182, 237);
+  color: #fff;
+}
+
+.seatBooked {
+  background-color: rgb(183, 172, 172);
+  cursor: no-drop;
+}
+
+.seatBooking {
+  background-color: rgb(228, 74, 8) !important;
+}
+
+.seatVip {
+  background-color: rgb(4, 63, 122);
+}
+
+.seatVipBooked {
+  background-color: rgb(183, 172, 172);
+  cursor: no-drop;
+}
+
+.seatBookedByMe {
+  /*seat that you booked */
+  background-color: rgb(246, 246, 246);
+  -webkit-box-shadow: -1px 2px 18px -6px green;
+  box-shadow: -1px 2px 18px -6px green;
+  color: green !important;
+  border: 1px solid green;
+
+}
