@@ -6,7 +6,11 @@ export class UserManagementService extends baseService {
     }
 
     login = (loginInfo) => { // {taiKhoan:'', matKhau:''}
-        return this.post(`/api/QuanLyNguoiDung/DangNhap`, loginInfo)
+        return this.post(`/api/QuanLyNguoiDung/DangNhap`, loginInfo);
+    }
+
+    getUserInfo = () => {
+        return this.post(`/api/QuanLyNguoiDung/ThongTinTaiKhoan`);
     }
 
 }
