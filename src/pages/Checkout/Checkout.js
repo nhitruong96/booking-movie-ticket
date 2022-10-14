@@ -175,13 +175,27 @@ function Checkout(props) {
 
 const { TabPane } = Tabs;
 
-function callback(key) {
-  console.log(key);
-}
+// function callback(key) {
+//   console.log(key);
+// }
 
-export default function (props) {
+export default function CheckoutTab(props) {
+
+  const { tabActive } = useSelector(state => state.BookingManagementReducer);
+  console.log('tabActive', tabActive);
+
+  const dispatch = useDispatch();
+
   return <div className="p-5">
-    <Tabs defaultActiveKey="1" onChange={callback}>
+    <Tabs defaultActiveKey="1" activeKey={tabActive} onChange={(key) => {
+        console.log('key', key);
+        dispatch({
+          type: 'CHANGE_TAB_ACTIVE',
+          tabActive: key
+        })
+      }}>
+      {/* If tabActive is integer => activeKey="{tabActive.toString()}"*/}
+      {/* onChange={callback} */}
       <TabPane tab="01 Select Seats & Payment" key="1">
         <Checkout {...props} />
       </TabPane>
@@ -222,9 +236,9 @@ function ResultBooking(props) {
             <p>Room: {seats.tenCumRap} </p>
             <p>
               Seat: {ticket.danhSachGhe.map((seat, index) => {
-              return <span key={index}>{seat.tenGhe}</span>
+                return <span key={index}>{seat.tenGhe}</span>
               })}
-            </p> 
+            </p>
           </div>
         </div>
       </div>
@@ -237,7 +251,7 @@ function ResultBooking(props) {
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-20">
           <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-purple-600">Purchase History</h1>
-          <p className="lg:w-2/3 mx-auto leading-relaxed text-base">View all your purchases history</p>
+          <p className="lg:w-2/3 mx-auto leading-relaxed text-base">View all your booked movies history</p>
         </div>
         <div className="flex flex-wrap -m-2">
           {renderTicketItem()}

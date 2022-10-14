@@ -1,9 +1,10 @@
-import { BOOK_TICKET, COMPLETE_BOOK_TICKET, SET_TICKET_ROOM_DETAIL } from "../actions/types/BookingManagementType";
+import { BOOK_TICKET, COMPLETE_BOOK_TICKET, MOVE_TAB_AFTER_BOOKING, SET_TICKET_ROOM_DETAIL } from "../actions/types/BookingManagementType";
 import { TicketRoomDetail } from "../../_core/models/TicketRoomDetail";
 
 const stateDefault = {
     ticketRoomDetail: new TicketRoomDetail(),
-    seatBookingList: []
+    seatBookingList: [],
+    tabActive: "1"
 }
 
 export const BookingManagementReducer = (state = stateDefault, action) => {
@@ -31,7 +32,17 @@ export const BookingManagementReducer = (state = stateDefault, action) => {
         }
 
         case COMPLETE_BOOK_TICKET: {
-            state.seatBookingList = [];
+            state.seatBookingList = []; //Reset to empty list after clicked Book ticket
+            return { ...state };
+        }
+
+        case MOVE_TAB_AFTER_BOOKING: {
+            state.tabActive = "2";
+            return { ...state };
+        }
+
+        case 'CHANGE_TAB_ACTIVE': {
+            state.tabActive = action.tabActive;
             return { ...state };
         }
 
