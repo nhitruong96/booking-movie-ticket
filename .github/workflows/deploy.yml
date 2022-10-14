@@ -1,4 +1,4 @@
-https://medium.com/devops-techable/build-docker-image-with-github-actions-and-push-it-to-amazon-ecr-d4e739472284
+# https://medium.com/devops-techable/build-docker-image-with-github-actions-and-push-it-to-amazon-ecr-d4e739472284
 
 name: Deploy to ECR
 
