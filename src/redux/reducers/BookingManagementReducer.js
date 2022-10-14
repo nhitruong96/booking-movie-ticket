@@ -1,4 +1,4 @@
-import { BOOK_TICKET, SET_TICKET_ROOM_DETAIL } from "../actions/types/BookingManagementType";
+import { BOOK_TICKET, COMPLETE_BOOK_TICKET, SET_TICKET_ROOM_DETAIL } from "../actions/types/BookingManagementType";
 import { TicketRoomDetail } from "../../_core/models/TicketRoomDetail";
 
 const stateDefault = {
@@ -27,9 +27,13 @@ export const BookingManagementReducer = (state = stateDefault, action) => {
             } else {
                 updateSeatBookingList.push(action.seatSelected);
             }
-            return { ...state, seatBookingList: updateSeatBookingList }
+            return { ...state, seatBookingList: updateSeatBookingList };
         }
 
+        case COMPLETE_BOOK_TICKET: {
+            state.seatBookingList = [];
+            return { ...state };
+        }
 
         default: return { ...state }
     }
