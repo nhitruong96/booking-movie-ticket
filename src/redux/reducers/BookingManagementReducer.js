@@ -4,6 +4,7 @@ import { TicketRoomDetail } from "../../_core/models/TicketRoomDetail";
 const stateDefault = {
     ticketRoomDetail: new TicketRoomDetail(),
     seatBookingList: [],
+    seatBookingByOthersList: [{maGhe:47401},{maGhe:47402}],
     tabActive: "1"
 }
 

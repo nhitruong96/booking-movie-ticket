@@ -17,7 +17,7 @@ function Checkout(props) {
 
   const { userLogin } = useSelector(state => state.UserManagementReducer);
 
-  const { ticketRoomDetail, seatBookingList } = useSelector(state => state.BookingManagementReducer);
+  const { ticketRoomDetail, seatBookingList, seatBookingByOthersList } = useSelector(state => state.BookingManagementReducer);
   // console.log('ticketRoomDetail', ticketRoomDetail);
 
   const dispatch = useDispatch();
@@ -54,6 +54,13 @@ function Checkout(props) {
         classSeatBookedByMe = 'seatBookedByMe';
       }
 
+      //Check each render seat to see if it is booked by others
+      let classSeatBookingByOthers = '';
+      let indexSeatBookingByOthers = seatBookingByOthersList.findIndex(seatBookingByOthers => seatBookingByOthers.maGhe === seat.maGhe);
+      if (indexSeatBookingByOthers !== -1) {
+        classSeatBookingByOthers = 'seatBookingByOthers';
+      }
+
       return <Fragment key={index}>
         <button onClick={() => {
           dispatch({
@@ -61,9 +68,9 @@ function Checkout(props) {
             seatSelected: seat
           })
         }}
-          disabled={seat.daDat}
-          className={`seat ${classSeatVip} ${classVipBooked} ${classSeatBooked} ${classSeatBooking} ${classSeatBookedByMe} text-center`}>
-          {seat.daDat ? classSeatBookedByMe !== '' ? <UserOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} /> : <CloseOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} /> : seat.stt}
+          disabled={seat.daDat || classSeatBookingByOthers !== ''}
+          className={`seat ${classSeatVip} ${classVipBooked} ${classSeatBooked} ${classSeatBooking} ${classSeatBookedByMe} ${classSeatBookingByOthers} text-center`}>
+          {seat.daDat ? classSeatBookedByMe !== '' | classSeatBookingByOthers !== ''  ? <UserOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} /> : <CloseOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} /> : seat.stt}
         </button>
 
         {(index + 1) % 16 === 0 ? <br /> : ''}
@@ -85,6 +92,7 @@ function Checkout(props) {
                   <th>Selected</th>
                   <th>Vip</th>
                   <th>Booked By Me</th>
+                  <th>Booked By Others</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -94,6 +102,7 @@ function Checkout(props) {
                   <td><button className="seat seatBooking"></button></td>
                   <td><button className="seat seatVip"></button></td>
                   <td><button className="seat seatBookedByMe"><UserOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} /></button></td>
+                  <td><button className="seat seatBookingByOthers"><UserOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} /></button></td>
                 </tr>
               </tbody>
             </table>
