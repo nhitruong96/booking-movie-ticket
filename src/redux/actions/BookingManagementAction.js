@@ -1,7 +1,8 @@
+import { connection } from "../..";
 import { bookingMngService } from "../../services/BookingManagementService";
 import { BookTicketInfo } from "../../_core/models/BookTicketInfo";
 import { displayLoadingAction, hideLoadingAction } from "./LoadingAction";
-import { COMPLETE_BOOK_TICKET, MOVE_TAB_AFTER_BOOKING, SET_TICKET_ROOM_DETAIL } from "./types/BookingManagementType";
+import { BOOK_TICKET, COMPLETE_BOOK_TICKET, MOVE_TAB_AFTER_BOOKING, SET_TICKET_ROOM_DETAIL } from "./types/BookingManagementType";
 import { DISPLAY_LOADING, HIDE_LOADING } from "./types/LoadingType";
 
 export const getTicketRoomDetailAction = (scheduleCode) => {
@@ -51,5 +52,31 @@ export const bookTicketAction = (bookTicketInfo = new BookTicketInfo()) => {
             console.log('error', error);
             console.log('error', error.response?.data);
         }
+    }
+}
+
+export const bookSeatAction = (seat, maLichChieu) => {
+
+    return async (dispatch, getState) => {
+
+        //Send seat info to reducer
+        await dispatch({
+            type: BOOK_TICKET,
+            seatSelected: seat
+        });
+
+        //Call API to backend
+        let seatBookingList = getState().BookingManagementReduce.seatBookingList;
+        let account = getState().UserManagementReducer.userLogin.taiKhoan;
+ 
+        console.log('seatBookingList', seatBookingList);
+        console.log('account', account);
+        console.log('maLichChieu', maLichChieu);
+
+        //Change array to string
+        seatBookingList = JSON.stringify(seatBookingList);
+
+        //Call API signalR
+        connection.invoke('datGhe', account, seatBookingList, maLichChieu);
     }
 }

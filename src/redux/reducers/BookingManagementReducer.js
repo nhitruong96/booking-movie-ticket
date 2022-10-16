@@ -3,7 +3,7 @@ import { TicketRoomDetail } from "../../_core/models/TicketRoomDetail";
 
 const stateDefault = {
     ticketRoomDetail: new TicketRoomDetail(),
-    seatBookingList: [],
+    seatBookingList: [], //list of seats are currently booking
     seatBookingByOthersList: [{maGhe:47401},{maGhe:47402}],
     tabActive: "1"
 }

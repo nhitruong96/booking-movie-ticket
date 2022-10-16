@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { bookTicketAction, getTicketRoomDetailAction } from '../../redux/actions/BookingManagementAction';
+import { bookSeatAction, bookTicketAction, getTicketRoomDetailAction } from '../../redux/actions/BookingManagementAction';
 import style from './Checkout.module.css'
 import './Checkout.css'
 import { CloseOutlined, UserOutlined } from '@ant-design/icons'
@@ -11,6 +11,7 @@ import { BookTicketInfo } from '../../_core/models/BookTicketInfo';
 import { Tabs } from 'antd';
 import { getUserInfoAction } from '../../redux/actions/UserManagementAction';
 import moment from 'moment';
+import { connection } from '../../index';
 
 
 function Checkout(props) {
@@ -29,6 +30,13 @@ function Checkout(props) {
     //Dispatch function to reducer
     //dispatch(id)
     dispatch(action);
+
+    //Load seats list which are booking from server 
+    //(Listen to signal returned from server)
+    connection.on("loadDanhSachGheDaDat", (seatBookedByOthersList) => {
+      console.log("seatBookedByOthersList", seatBookedByOthersList);
+    })
+
   }, []);
 
   console.log('ticketRoomDetail', ticketRoomDetail);
@@ -63,14 +71,18 @@ function Checkout(props) {
 
       return <Fragment key={index}>
         <button onClick={() => {
-          dispatch({
-            type: BOOK_TICKET,
-            seatSelected: seat
-          })
+
+          const action = bookSeatAction(seat, props.match.params.id);
+          dispatch(action);
+
+          // dispatch({
+          //   type: BOOK_TICKET,
+          //   seatSelected: seat
+          // })
         }}
           disabled={seat.daDat || classSeatBookingByOthers !== ''}
           className={`seat ${classSeatVip} ${classVipBooked} ${classSeatBooked} ${classSeatBooking} ${classSeatBookedByMe} ${classSeatBookingByOthers} text-center`}>
-          {seat.daDat ? classSeatBookedByMe !== '' | classSeatBookingByOthers !== ''  ? <UserOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} /> : <CloseOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} /> : seat.stt}
+          {seat.daDat ? classSeatBookedByMe !== '' | classSeatBookingByOthers !== '' ? <UserOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} /> : <CloseOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} /> : seat.stt}
         </button>
 
         {(index + 1) % 16 === 0 ? <br /> : ''}
@@ -197,12 +209,12 @@ export default function CheckoutTab(props) {
 
   return <div className="p-5">
     <Tabs defaultActiveKey="1" activeKey={tabActive} onChange={(key) => {
-        console.log('key', key);
-        dispatch({
-          type: 'CHANGE_TAB_ACTIVE',
-          tabActive: key
-        })
-      }}>
+      console.log('key', key);
+      dispatch({
+        type: 'CHANGE_TAB_ACTIVE',
+        tabActive: key
+      })
+    }}>
       {/* If tabActive is integer => activeKey="{tabActive.toString()}"*/}
       {/* onChange={callback} */}
       <TabPane tab="01 Select Seats & Payment" key="1">
