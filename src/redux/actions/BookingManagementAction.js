@@ -29,7 +29,7 @@ export const getTicketRoomDetailAction = (scheduleCode) => {
 
 export const bookTicketAction = (bookTicketInfo = new BookTicketInfo()) => {
 
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         try {
             // dispatch({
             //     type:DISPLAY_LOADING
@@ -43,6 +43,9 @@ export const bookTicketAction = (bookTicketInfo = new BookTicketInfo()) => {
             await dispatch({ type: COMPLETE_BOOK_TICKET }); //Total payment go back to $0, seats color change from select to bookedByMe
 
             await dispatch(hideLoadingAction);
+
+            let userLogin = getState().UserManagementReducer.userLogin;
+            connection.invoke('datGheThanhCong', userLogin.taiKhoan, bookTicketInfo.maLichChieu);
 
             dispatch({ type: MOVE_TAB_AFTER_BOOKING });
 

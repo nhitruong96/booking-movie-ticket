@@ -31,13 +31,54 @@ function Checkout(props) {
     //dispatch(id)
     dispatch(action);
 
+    //If any client book ticket successfully => reload list of seats of that movie time
+    connection.on('datVeThanhCong', () => {
+      dispatch(action);
+    })
+
+    //Load all seats booking by others when opening page
+    connection.invoke('loadDanhSachGhe', props.match.params.id);
+
     //Load seats list which are booking from server 
     //(Listen to signal returned from server)
     connection.on("loadDanhSachGheDaDat", (seatBookedByOthersList) => {
+
       console.log("seatBookedByOthersList", seatBookedByOthersList);
+
+      //Step 1: Remove me out of the list of seat booking  
+      seatBookedByOthersList = seatBookedByOthersList.filter(item => item.taiKhoan !== userLogin.taiKhoan);
+
+      //Step 2: Merge list of seat booking by others from all user to one array
+      let arrseatBookedByOthers = seatBookedByOthersList.reduce((result, item, index) => {
+        let arrSeat = JSON.parse(item.listSeat);
+
+        return [...result, ...arrSeat];
+      }, []);
+
+      //Send data seat booked by others to update redux
+      arrseatBookedByOthers = _.uniqBy(arrseatBookedByOthers, 'maGhe');
+
+      //Send data seat booked by others to redux
+      dispatch({ 
+        type: 'BOOK_SEAT',
+        arrseatBookedByOthers
+      })
+      // console.log(arrseatBookedByOthers);
     })
 
+    //Add event when reload page
+    window.addEventListener("beforeupload", clearSeat);
+
+    return () => {
+      clearSeat();
+      window.removeEventListener('beforeupload', clearSeat);
+    }
+
   }, []);
+
+  const clearSeat = function(event) {
+    connection.invoke('huyDat', userLogin.taiKhoan, props.match.params.id);
+  }
 
   console.log('ticketRoomDetail', ticketRoomDetail);
 

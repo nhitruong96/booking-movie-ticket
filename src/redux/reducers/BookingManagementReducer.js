@@ -4,7 +4,8 @@ import { TicketRoomDetail } from "../../_core/models/TicketRoomDetail";
 const stateDefault = {
     ticketRoomDetail: new TicketRoomDetail(),
     seatBookingList: [], //list of seats are currently booking
-    seatBookingByOthersList: [{maGhe:47401},{maGhe:47402}],
+    seatBookingByOthersList: [],
+    // [{maGhe:47401},{maGhe:47402}],
     tabActive: "1"
 }
 
@@ -44,6 +45,11 @@ export const BookingManagementReducer = (state = stateDefault, action) => {
 
         case 'CHANGE_TAB_ACTIVE': {
             state.tabActive = action.tabActive;
+            return { ...state };
+        }
+
+        case 'BOOK_SEAT': {
+            state.seatBookingByOthersList = action.arrseatBookedByOthers;
             return { ...state };
         }
 
