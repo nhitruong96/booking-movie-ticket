@@ -69,7 +69,7 @@ export const bookSeatAction = (seat, maLichChieu) => {
         });
 
         //Call API to backend
-        let seatBookingList = getState().BookingManagementReduce.seatBookingList;
+        let seatBookingList = getState().BookingManagementReducer.seatBookingList;
         let account = getState().UserManagementReducer.userLogin.taiKhoan;
  
         console.log('seatBookingList', seatBookingList);

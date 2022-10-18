@@ -14,7 +14,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 //Configure realtime(Websocket with signalR)
-import signalR from '@aspnet/signalr'
+import * as signalR from '@aspnet/signalr'
 
 import { DOMAIN } from './util/settings/config';
 

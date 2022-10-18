@@ -67,11 +67,11 @@ function Checkout(props) {
     })
 
     //Add event when reload page
-    window.addEventListener("beforeupload", clearSeat);
+    window.addEventListener("beforeunload", clearSeat);
 
     return () => {
       clearSeat();
-      window.removeEventListener('beforeupload', clearSeat);
+      window.removeEventListener('beforeunload', clearSeat);
     }
 
   }, []);
