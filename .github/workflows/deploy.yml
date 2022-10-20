@@ -35,3 +35,12 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+    - name: Triggers Jenkins Deploy Job
+      uses: appleboy/jenkins-action@master
+      with:
+        url: "http://levantine.io/jenkins/"
+        user: "example"
+        token: ${{ secrets.jenkins_token }}
+        job: "Deploy-booking-movie-ticket"
+        
