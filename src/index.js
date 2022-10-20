@@ -5,9 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './redux/configStore';
+
+//antd
 import 'antd/dist/antd.css';
+
+//reactSlick
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+
+//Multi-languages
+import './i18n';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
