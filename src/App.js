@@ -1,6 +1,6 @@
 import './App.css';
 import { createBrowserHistory } from 'history';
-import { Route, Router, Switch } from 'react-router';
+import { Route, Router, Switch, Redirect } from 'react-router';
 import { HomeTemplate } from './templates/HomeTemplate/HomeTemplate'
 import Home from './pages/Home/Home';
 import Contact from './pages/Contact/Contact';
@@ -24,21 +24,33 @@ function App() {
     <Router history={history}>
       <Loading />
       <Switch>
-        <HomeTemplate path="/home" exact Component={Home} />
-        <HomeTemplate path="/contact" exact Component={Contact} />
-        <HomeTemplate path="/news" exact Component={News} />
-        <HomeTemplate path="/detail/:id" exact Component={Detail} />
-        <Route path="/register" exact Component={Register} />
+        <HomeTemplate path="/booking-movie-ticket/home" exact Component={Home} />
+        <HomeTemplate path="/booking-movie-ticket/contact" exact Component={Contact} />
+        <HomeTemplate path="/booking-movie-ticket/news" exact Component={News} />
+        <HomeTemplate path="/booking-movie-ticket/detail/:id" exact Component={Detail} />
+        <Route path="/booking-movie-ticket/register" exact Component={Register} />
 
-        <CheckoutTemplate path="/checkout/:id" exact Component={Checkout} />
+        <CheckoutTemplate path="/booking-movie-ticket/checkout/:id" exact Component={Checkout} />
 
         {/* <Suspense fallback={<div>Loading...</div>}>
           <CheckoutTemplateLazy path="/checkout/:id" exact Component={Checkout} />
         </Suspense> */}
         
-        <UserTemplate path="/login" exact Component={Login} />
+        <UserTemplate path="/booking-movie-ticket/login" exact Component={Login} />
 
-        <HomeTemplate path="/" exact Component={Home} />
+
+        
+        <HomeTemplate path="/" exact Component={() => (<Redirect to='/booking-movie-ticket/home' />)} />
+        <HomeTemplate path="/booking-movie-ticket" exact Component={() => (<Redirect to='/booking-movie-ticket/home' />)} />
+        <HomeTemplate path="/home" exact Component={() => (<Redirect to='/booking-movie-ticket/home' />)} />
+        <HomeTemplate path="/contact" exact Component={() => (<Redirect to='/booking-movie-ticket/contact' />)} />
+        <HomeTemplate path="/news" exact Component={() => (<Redirect to='/booking-movie-ticket/news' />)} />
+        <HomeTemplate path="/detail/:id" exact Component={() => (<Redirect to={`/booking-movie-ticket/detail/:id`} />)} />
+        <HomeTemplate path="/register" exact Component={() => (<Redirect to='/booking-movie-ticket/register' />)} />
+        <CheckoutTemplate path="/checkout/:id" exact Component={() => (<Redirect to='/booking-movie-ticket/checkout/:id' />)} />
+        <UserTemplate path="/login" exact Component={() => (<Redirect to='/booking-movie-ticket/login' />)} />
+
+        
       </Switch>
     </Router>
   );

@@ -27,7 +27,7 @@ export default function Film_Flip(props) {
                 </div>
             </div>
             <div onClick={() => {
-                history.push(`/detail/${film.maPhim}`);
+                history.push(`/booking-movie-ticket/detail/${film.maPhim}`);
             }} className="bg-orange-300 text-center cursor-pointer py-2 bg-indigo-300 my-2 text-success-50 font-bold">BOOK TICKET</div>
             {/* <NavLink to={`/detail/${film.maPhim}`}>BOOK TICKET</NavLink> */}
         </div>
