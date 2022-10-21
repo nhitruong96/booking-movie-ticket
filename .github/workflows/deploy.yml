@@ -35,3 +35,9 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+    - name: Run Jenkins Deploy Job
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: "http://github_actions_bmt:${{ secrets.jenkins_token }}@levantine.io/jenkins/job/Deploy-booking-movie-ticket/build"
+        method: 'POST'

@@ -16,6 +16,18 @@ import Loading from './components/Loading/Loading';
 
 // const CheckoutTemplateLazy = lazy(() => import('./templates/CheckoutTemplate/CheckoutTemplate'))
 
+// import { BrowserRouter, Route, Redirect } from 'react-router-dom'
+
+// <BrowserRouter>
+//    <Switch>
+//      <Route
+//         path='/'
+//         component={SomeComponent}
+//      />
+//      <Redirect to='/somestuff'/>
+//    </Switch>
+// </BrowserRouter>
+
 export const history = createBrowserHistory();
 
 function App() {
@@ -37,8 +49,6 @@ function App() {
         </Suspense> */}
         
         <UserTemplate path="/booking-movie-ticket/login" exact Component={Login} />
-
-
         
         <HomeTemplate path="/" exact Component={() => (<Redirect to='/booking-movie-ticket/home' />)} />
         <HomeTemplate path="/booking-movie-ticket" exact Component={() => (<Redirect to='/booking-movie-ticket/home' />)} />
@@ -50,7 +60,6 @@ function App() {
         <CheckoutTemplate path="/checkout/:id" exact Component={() => (<Redirect to='/booking-movie-ticket/checkout/:id' />)} />
         <UserTemplate path="/login" exact Component={() => (<Redirect to='/booking-movie-ticket/login' />)} />
 
-        
       </Switch>
     </Router>
   );
