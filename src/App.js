@@ -49,9 +49,17 @@ function App() {
         </Suspense> */}
         
         <UserTemplate path="/booking-movie-ticket/login" exact Component={Login} />
+        
+        <HomeTemplate path="/" exact Component={() => (<Redirect to='/booking-movie-ticket/home' />)} />
+        <HomeTemplate path="/booking-movie-ticket" exact Component={() => (<Redirect to='/booking-movie-ticket/home' />)} />
+        <HomeTemplate path="/home" exact Component={() => (<Redirect to='/booking-movie-ticket/home' />)} />
+        <HomeTemplate path="/contact" exact Component={() => (<Redirect to='/booking-movie-ticket/contact' />)} />
+        <HomeTemplate path="/news" exact Component={() => (<Redirect to='/booking-movie-ticket/news' />)} />
+        <HomeTemplate path="/detail/:id" exact Component={() => (<Redirect to={`/booking-movie-ticket/detail/:id`} />)} />
+        <HomeTemplate path="/register" exact Component={() => (<Redirect to='/booking-movie-ticket/register' />)} />
+        <CheckoutTemplate path="/checkout/:id" exact Component={() => (<Redirect to='/booking-movie-ticket/checkout/:id' />)} />
+        <UserTemplate path="/login" exact Component={() => (<Redirect to='/booking-movie-ticket/login' />)} />
 
-        <HomeTemplate path="/booking-movie-ticket/" exact Component={Home} />
-        <Redirect to='/booking-movie-ticket/'/>
       </Switch>
     </Router>
   );
