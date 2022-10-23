@@ -13,17 +13,21 @@ export const HomeTemplate = (props) => { //props: path, exact, Component
         //props.match.param
 
         return <Fragment>
-            <Suspense fallback={<div>Loading... </div>}>
+            {/* <Suspense fallback={<div>Loading... </div>}>
                 <Header {...propsRoute} />
-            </Suspense>
+            </Suspense> */}
+
+            <Header {...propsRoute} />
 
             <Component {...propsRoute} />
 
             <hr className="mt-2" />
-            
-            <Suspense fallback={<div>Loading... </div>}>
+
+            <Footer {...propsRoute} />
+
+            {/* <Suspense fallback={<div>Loading... </div>}>
                 <Footer {...propsRoute} />
-            </Suspense>
+            </Suspense> */}
 
         </Fragment>
     }} />

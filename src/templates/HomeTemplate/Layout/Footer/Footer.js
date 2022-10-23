@@ -4,16 +4,16 @@ import _ from 'lodash'
 import { AppleOutlined, FacebookOutlined } from '@ant-design/icons'
 
 //Hook multi-languages 
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 
 export default function Footer(props) {
 
-  const { t, i18n } = useTranslation();
-  const handleChange = (value) => {
-    // console.log(`selected ${value}`);
-    i18n.changeLanguage(value);
-  };
+  // const { t, i18n } = useTranslation();
+  // const handleChange = (value) => {
+  //   // console.log(`selected ${value}`);
+  //   i18n.changeLanguage(value);
+  // };
 
   const { arrTheater } = useSelector(state => state.TheaterManagementReducer);
 
@@ -34,7 +34,8 @@ export default function Footer(props) {
             </a>
           </div>
           <div className="col-span-6 text-center md:text-left md:col-span-3">
-            <p className="pb-1 text-lg font-medium text-white">{t('Partner')}</p>
+            {/* <p className="pb-1 text-lg font-medium text-white">{t('Partner')}</p> */}
+            <p className="pb-1 text-lg font-medium text-white">'Partner'</p> 
             <div className="grid grid-cols-3" style={{ color: '#fff' }}>
               {arrayTheaters.map((item, index) => {
                 return <div key={index}>
@@ -44,7 +45,8 @@ export default function Footer(props) {
             </div>
           </div>
           <div className="col-span-6 text-center md:text-left md:col-span-3">
-            <p className="pb-1 text-lg font-medium text-white">{t('Mobile App')}</p>
+            {/* <p className="pb-1 text-lg font-medium text-white">{t('Mobile App')}</p> */}
+            <p className="pb-1 text-lg font-medium text-white">Mobile App</p>
             <div className="flex text-white">
               <div className="mr-5">
                 <AppleOutlined className="text-2xl" />
@@ -58,7 +60,8 @@ export default function Footer(props) {
         </div>
         <div className="grid justify-center pt-6 lg:justify-between">
           <div className="flex flex-col self-center text-sm text-center md:block lg:col-start-1 md:space-x-6">
-            <span>{t('©2022 All rights reserved')}</span>
+            {/* <span>{t('©2022 All rights reserved')}</span> */}
+            <span>©2022 All rights reserved</span>
           </div>
           {/* <div className="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
             <a rel="noopener noreferrer" href="#" title="Email" className="flex items-center justify-center w-10 h-10 rounded-full dark:bg-violet-400 dark:text-gray-900">
