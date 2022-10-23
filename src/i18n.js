@@ -25,7 +25,7 @@ i18n
     whitelist: ['en', 'vi'], //List all the languages 
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
-    }
+    },
   });
 
 
