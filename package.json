@@ -44,7 +44,7 @@
   "scripts": {
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "webpack-dev-server --mode development --open --hot --port 3000 --host 0.0.0.0",
+    "start": "webpack-dev-server --mode development --open --hot --port 3000 --host 0.0.0.0 --disable-host-check",
     "build": "webpack --mode production"
   },
   "eslintConfig": {
