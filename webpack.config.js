@@ -75,6 +75,6 @@ module.exports = {
   ],
   devServer: {
     compress: true,
-    host: 'levantine.io',
+    disableHostCheck: true,
   }
 };
