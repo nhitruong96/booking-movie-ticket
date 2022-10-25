@@ -64,7 +64,7 @@ module.exports = {
           },
         ],
       },
-      
+
     ]
   },
   // Chứa các plugins sẽ cài đặt trong tương lai
@@ -72,5 +72,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./public/index.html"
     })
-  ]
+  ],
+  devServer: {
+    compress: true,
+    host: 'levantine.io',
+  }
 };
