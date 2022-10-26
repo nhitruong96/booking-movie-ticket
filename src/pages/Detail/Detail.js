@@ -85,7 +85,7 @@ export default function Detail(props) {
                                                     </div>
                                                     <div className="grid grid-cols-4">
                                                         {theater.lichChieuPhim?.slice(0, 12).map((showtime, index) => {
-                                                            return <NavLink to={`/booking-movie-ticket/checkout/${showtime.maLichChieu}`} key={index} className="col-span-1 text-green-700 font-bold">
+                                                            return <NavLink to={`/checkout/${showtime.maLichChieu}`} key={index} className="col-span-1 text-green-700 font-bold">
                                                                 {moment(showtime.ngayChieuGioChieu).format('hh:mm A')}
                                                             </NavLink>
                                                         })}
