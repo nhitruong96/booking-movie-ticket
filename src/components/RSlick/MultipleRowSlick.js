@@ -62,20 +62,20 @@ const MultipleRowSlick = (props) => {
         // rows: 1,
         rows: 2,
         slidesPerRow: 2,
-        variableWidth: true,
+        // variableWidth: true,
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />
     };
 
     return (
         <div>
-            <button type="button" class={`${styleSlick[activeClassDC]} px-8 py-3 font-semibold rounded bg-white text-gray-800 border-gray-800 border mr-2`}
+            <button type="button" className={`${styleSlick[activeClassDC]} px-8 py-3 font-semibold rounded bg-white text-gray-800 border-gray-800 border mr-2`}
                 onClick={() => {
                     const action = { type: SET_FILM_NOW_PLAYING }
                     dispatch(action);
                 }}
             >NOW PLAYING</button>
-            <button type="button" class={`${styleSlick[activeClassSC]} px-8 py-3 font-semibold rounded bg-white text-gray-800 border-gray-800 border`}
+            <button type="button" className={`${styleSlick[activeClassSC]} px-8 py-3 font-semibold rounded bg-white text-gray-800 border-gray-800 border`}
                 onClick={() => {
                     const action = { type: SET_FILM_COMING_SOON }
                     dispatch(action);
