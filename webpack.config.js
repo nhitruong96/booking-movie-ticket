@@ -1,5 +1,4 @@
 const path = require("path");
-
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -11,7 +10,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/, // Sẽ sử dụng babel-loader cho những file .js
+        test: /\.js$/, // Sẽ sử dụng babel-loader cho những file .js 
         exclude: /node_modules/, // Loại trừ thư mục node_modules
         use: ["babel-loader"]
       },
@@ -19,51 +18,55 @@ module.exports = {
         test: /\.css$/, // Sử dụng style-loader, css-loader cho file .css
         use: ["style-loader", "css-loader"]
       },
-      // --------
-      // SCSS ALL EXCEPT MODULES
       {
-        test: /\.scss$/i,
-        exclude: /\.module\.scss$/i,
-        use: [
-          {
-            loader: "style-loader",
-          },
-          {
-            loader: "css-loader",
-            options: {
-              importLoaders: 1,
-              modules: {
-                mode: "icss",
-              },
-            },
-          },
-          {
-            loader: "sass-loader",
-          },
-        ],
+        test: /\.s[ac]ss$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
-      // --------
-      // SCSS MODULES
-      {
-        test: /\.module\.scss$/i,
-        use: [
-          {
-            loader: "style-loader",
-          },
-          {
-            loader: "css-loader",
-            options: {
-              importLoaders: 1,
-              modules: {
-                mode: "local",
-              },
-            },
-          },
-          {
-            loader: "sass-loader",
-          },
-        ],
-      },
+      // // --------
+      // // SCSS ALL EXCEPT MODULES
+      // {
+      //   test: /\.scss$/i,
+      //   exclude: /\.module\.scss$/i,
+      //   use: [
+      //     {
+      //       loader: "style-loader",
+      //     },
+      //     {
+      //       loader: "css-loader",
+      //       options: {
+      //         importLoaders: 1,
+      //         modules: {
+      //           mode: "icss",
+      //         },
+      //       },
+      //     },
+      //     {
+      //       loader: "sass-loader",
+      //     },
+      //   ],
+      // },
+      // // --------
+      // // SCSS MODULES
+      // {
+      //   test: /\.module\.scss$/i,
+      //   use: [
+      //     {
+      //       loader: "style-loader",
+      //     },
+      //     {
+      //       loader: "css-loader",
+      //       options: {
+      //         importLoaders: 1,
+      //         modules: {
+      //           mode: "local",
+      //         },
+      //       },
+      //     },
+      //     {
+      //       loader: "sass-loader",
+      //     },
+      //   ],
+      // },
 
     ]
   },
@@ -73,9 +76,9 @@ module.exports = {
       template: "./public/index.html"
     })
   ],
-  devServer: {
-    compress: true,
-    allowedHosts: "all",
-    port: 3000
-  }
+  // devServer: {
+  //   compress: true,
+  //   allowedHosts: "all",
+  //   port: 3000
+  // }
 };

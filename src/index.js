@@ -20,6 +20,7 @@ import "slick-carousel/slick/slick-theme.css";
 // );
 
 //React@17
+// Render component App into #root element
 ReactDOM.render(
   // <React.StrictMode>
     <Provider store={store}>
@@ -28,6 +29,7 @@ ReactDOM.render(
   // </React.StrictMode>,
   document.getElementById('root')
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import { createBrowserHistory } from 'history';
 import { Route, Router, Switch } from 'react-router';
 import { HomeTemplate } from './templates/HomeTemplate/HomeTemplate'
