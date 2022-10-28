@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Carousel } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
