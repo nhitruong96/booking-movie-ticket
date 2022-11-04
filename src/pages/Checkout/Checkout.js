@@ -4,13 +4,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { bookTicketAction, getTicketRoomDetailAction } from '../../redux/actions/BookingManagementAction';
 import style from './Checkout.module.css'
 import './Checkout.css'
-import { CloseOutlined, UserOutlined } from '@ant-design/icons'
+import { CloseOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons'
 import { BOOK_TICKET } from '../../redux/actions/types/BookingManagementType';
 import _ from 'lodash';
 import { BookTicketInfo } from '../../_core/models/BookTicketInfo';
 import { Tabs } from 'antd';
 import { getUserInfoAction } from '../../redux/actions/UserManagementAction';
 import moment from 'moment';
+import { history } from '../../App';
+import { TOKEN, USER_LOGIN } from '../../util/settings/config';
+import { NavLink } from 'react-router-dom';
 
 
 function Checkout(props) {
@@ -186,20 +189,47 @@ export default function CheckoutTab(props) {
 
   const dispatch = useDispatch();
 
+  const { userLogin } = useSelector(state => state.UserManagementReducer);
+
+  useEffect(() => {
+    return () => {
+      dispatch({
+        type: 'CHANGE_TAB_ACTIVE',
+        tabActive: '1'
+      })
+    }
+  }, [])
+
+  // const operations = <button>Extra Action</button>;
+  const operations = <Fragment>
+    {!_.isEmpty(userLogin) ? <Fragment> <button onClick={() => { 
+      history.push('/profile')
+    }}><div style={{width:50, height:50, display:'flex', justifyContent: 'center', alignItems:'center'}} className="text-2xl ml-5 rounded-full bg-red-200">
+      {userLogin.taiKhoan.substr(0,1)}</div>Hello {userLogin.taiKhoan} !</button> <button onClick={() => { 
+        localStorage.removeItem(USER_LOGIN);
+        localStorage.removeItem(TOKEN);
+        history.push('/home');
+        window.location.reload();
+      }} className="text-blue-800">Log out</button> </Fragment> : ''}
+  </Fragment>
+
   return <div className="p-5">
-    <Tabs defaultActiveKey="1" activeKey={tabActive} onChange={(key) => {
-        console.log('key', key);
-        dispatch({
-          type: 'CHANGE_TAB_ACTIVE',
-          tabActive: key
-        })
-      }}>
+    <Tabs tabBarExtraContent={operations} defaultActiveKey="1" activeKey={tabActive} onChange={(key) => {
+      console.log('key', key);
+      dispatch({
+        type: 'CHANGE_TAB_ACTIVE',
+        tabActive: key.toString()
+      })
+    }}>
       {/* If tabActive is integer => activeKey="{tabActive.toString()}"*/}
       {/* onChange={callback} */}
       <TabPane tab="01 Select Seats & Payment" key="1">
         <Checkout {...props} />
       </TabPane>
       <TabPane tab="02 Purchase Confirmation" key="2">
+        <ResultBooking {...props} />
+      </TabPane>
+      <TabPane tab={<NavLink to="/"><HomeOutlined style={{marginLeft:10, fontSize:25}} /></NavLink>} key="3">
         <ResultBooking {...props} />
       </TabPane>
     </Tabs>
