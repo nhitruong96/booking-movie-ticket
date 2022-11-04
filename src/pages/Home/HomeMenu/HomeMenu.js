@@ -47,7 +47,7 @@ export default function HomeMenu(props) {
                                             <p>{theater.diaChi}</p>
                                             <div className="grid grid-cols-6 gap-10">
                                                 {film.lstLichChieuTheoPhim?.slice(0, 12).map((showtime, index) => {
-                                                    return <NavLink to="/" className="text-lg text-green-400" key={index}>
+                                                    return <NavLink to={`/checkout/${showtime.maLichChieu}`} className="text-lg text-green-400" key={index}>
                                                         {moment(showtime.ngayChieuGioChieu).format('hh:mm A')}
                                                     </NavLink>
                                                 })}
