@@ -14,6 +14,10 @@ import Checkout from './pages/Checkout/Checkout';
 import { UserTemplate } from './templates/UserTemplate/UserTemplate';
 import Loading from './components/Loading/Loading';
 import Profile from './pages/Profile/Profile';
+import Dashboard from './pages/Admin/Dashboard/Dashboard';
+import Films from './pages/Admin/Films/Films';
+import Showtime from './pages/Admin/Showtime/Showtime';
+import AdminTemplate from './templates/AdminTemplate/AdminTemplate';
 // import { Suspense, lazy } from 'react';
 
 // const CheckoutTemplateLazy = lazy(() => import('./templates/CheckoutTemplate/CheckoutTemplate'))
@@ -40,6 +44,11 @@ function App() {
         
         <UserTemplate path="/login" exact Component={Login} />
         <UserTemplate path="/register" exact Component={Register} />
+
+        <AdminTemplate path="/admin" exact Component={Dashboard} />
+        <AdminTemplate path="/admin/films" exact Component={Films} />
+        <AdminTemplate path="/admin/users" exact Component={Dashboard} />
+        <AdminTemplate path="/admin/showtimes" exact Component={Showtime} />
 
         <HomeTemplate path="/" exact Component={Home} />
       </Switch>
