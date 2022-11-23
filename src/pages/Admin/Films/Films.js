@@ -4,6 +4,7 @@ import { SearchOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilmListAction } from '../../../redux/actions/FilmManagementAction';
 import { NavLink } from 'react-router-dom';
+import { history } from '../../../App';
 
 const { Search } = Input;
 
@@ -102,7 +103,9 @@ export default function Films(props) {
   return (
     <div>
       <h3 className="text-4xl">Films Management</h3>
-      <Button className="mb-5">Add film</Button>
+      <Button className="mb-5" onClick={() => {
+        history.push('/admin/films/addnew')
+      }}>Add film</Button>
       <Search
         className="mb-5"
         placeholder="input search text"
