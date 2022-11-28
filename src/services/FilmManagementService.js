@@ -13,6 +13,10 @@ export class FilmManagementService extends baseService {
     getFilmList = () => {
         return this.get(`/api/QuanLyPhim/LayDanhSachPhim?maNhom=${GROUPID}`)
     }
+
+    addFilmUploadImage = (formData) => {
+        return this.post(`/api/QuanLyPhim/ThemPhimUploadHinh`, formData);
+    }
 }
 
 export const filmMngService = new FilmManagementService();

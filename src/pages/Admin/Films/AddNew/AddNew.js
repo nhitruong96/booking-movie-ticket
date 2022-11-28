@@ -11,9 +11,88 @@ import {
   TreeSelect,
   Switch,
 } from 'antd';
+import { useFormik } from 'formik';
+import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { addFilmUploadImageAction } from '../../../../redux/actions/FilmManagementAction';
+import { GROUPID } from '../../../../util/settings/config';
 
 const AddNew = () => {
   const [componentSize, setComponentSize] = useState('default');
+  const [imgSrc, setImgSrc] = useState('');
+  const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      tenPhim: '',
+      trailer: '',
+      moTa: '',
+      ngayKhoiChieu: '',
+      dangChieu: false,
+      sapChieu: false,
+      hot: false,
+      danhGia: 0,
+      hinhAnh: {},
+    },
+    onSubmit: (values) => {
+      console.log('value', values);
+      values.maNhom = GROUPID;
+
+      //Create object formData => Send values from formik to formData
+      let formData = new FormData();
+      for (let key in values) {
+        if (key !== 'hinhAnh') {
+          formData.append(key, values[key]);
+        } else {
+          formData.append('File', values.hinhAnh, values.hinhAnh.name);
+        }
+      }
+      // formData.append('tenPhim', formik.values.tenPhim);
+      // console.log('formData', formData.get('tenPhim'));
+      console.log('formData', formData.get('File'));
+
+      //Call API send values in formData to backend
+      dispatch(addFilmUploadImageAction(formData));
+    }
+  })
+
+  const handleChangeDatePicker = (value) => {
+    //console.log('datepickerchange', value);
+    let releaseDate = moment(value).format('MM/DD/YYYY');
+    formik.setFieldValue('release date', releaseDate);
+
+  }
+
+  const handleChangeSwitch = (name) => {
+    return (value) => {
+      formik.setFieldValue(name, value)
+    }
+  }
+
+  const handleChangeInputNumber = (name) => {
+    return (value) => {
+      formik.setFieldValue(name, value)
+    }
+  }
+
+  const handleChangeFile = (e) => {
+    //Get file from event
+    let file = e.target.files[0];
+
+    if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png' || file.type === 'image/gif') {
+      //Create object to read file
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        // console.log(e.target.result);
+        setImgSrc(e.target.result); //Image base 64
+      }
+      //Save data file to formik
+      formik.setFieldValue('hinhAnh', file);
+
+      //formik.setErrors()
+    }
+  }
 
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
@@ -22,6 +101,7 @@ const AddNew = () => {
   return (
     <>
       <Form
+        onSubmitCapture={formik.handleSubmit}
         labelCol={{
           span: 4,
         }}
@@ -44,37 +124,37 @@ const AddNew = () => {
           </Radio.Group>
         </Form.Item>
         <Form.Item label="Movie name">
-          <Input name="tenPhim" />
+          <Input name="tenPhim" onChange={formik.handleChange} />
         </Form.Item>
         <Form.Item label="Trailer">
-          <Input name="trailer" />
+          <Input name="trailer" onChange={formik.handleChange} />
         </Form.Item>
         <Form.Item label="Description">
-          <Input name="moTa" />
+          <Input name="moTa" onChange={formik.handleChange} />
         </Form.Item>
         <Form.Item label="Release Date">
-          <DatePicker />
+          <DatePicker format={"MM/DD/YYYY"} onChange={handleChangeDatePicker} />
         </Form.Item>
         <Form.Item label="Now Playing">
-          <Switch />
+          <Switch onChange={handleChangeSwitch('dangChieu')} />
         </Form.Item>
         <Form.Item label="Coming soon">
-          <Switch />
+          <Switch onChange={handleChangeSwitch('sapChieu')} />
         </Form.Item>
         <Form.Item label="Hot">
-          <Switch />
+          <Switch onChange={handleChangeSwitch('hot')} />
         </Form.Item>
         <Form.Item label="Rating">
-          <InputNumber />
+          <InputNumber onChange={handleChangeInputNumber('danhGia')} min={1} max={10} />
         </Form.Item>
         <Form.Item label="Poster">
-          <input type="file" />
+          <input type="file" onChange={handleChangeFile} accept="image/png, image/jpeg, image/jpg, image/gif" />
+          <br />
+          <img style={{ width: 150, height: 150 }} src={imgSrc} alt="..." />
         </Form.Item>
-        <Form.Item label="Button">
-          <Button>Button</Button>
+        <Form.Item label="Action">
+          <button type="submit" className="bg-blue-300 text-white p-2">Add film</button>
         </Form.Item>
-        
-        
       </Form>
     </>
   );
