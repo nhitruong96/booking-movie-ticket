@@ -29,3 +29,15 @@ export const getFilmListAction = () => {
         }
     }
 }
+
+export const addFilmUploadImageAction = (formData) => {
+    return async (dispatch) => {
+        try {
+            let result = await filmMngService.addFilmUploadImage(formData);
+            alert('Add film successfully!');
+            console.log('resultFilmUploadImage', result.data.content)
+        } catch (errors) {
+            console.log(errors.response?.data)
+        }
+    }
+}

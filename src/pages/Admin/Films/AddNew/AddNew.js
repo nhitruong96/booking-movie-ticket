@@ -13,10 +13,14 @@ import {
 } from 'antd';
 import { useFormik } from 'formik';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { addFilmUploadImageAction } from '../../../../redux/actions/FilmManagementAction';
+import { GROUPID } from '../../../../util/settings/config';
 
 const AddNew = () => {
   const [componentSize, setComponentSize] = useState('default');
   const [imgSrc, setImgSrc] = useState('');
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -30,8 +34,25 @@ const AddNew = () => {
       danhGia: 0,
       hinhAnh: {},
     },
-    onSubmit: (value) => {
-      console.log('value', value)
+    onSubmit: (values) => {
+      console.log('value', values);
+      values.maNhom = GROUPID;
+
+      //Create object formData => Send values from formik to formData
+      let formData = new FormData();
+      for (let key in values) {
+        if (key !== 'hinhAnh') {
+          formData.append(key, values[key]);
+        } else {
+          formData.append('File', values.hinhAnh, values.hinhAnh.name);
+        }
+      }
+      // formData.append('tenPhim', formik.values.tenPhim);
+      // console.log('formData', formData.get('tenPhim'));
+      console.log('formData', formData.get('File'));
+
+      //Call API send values in formData to backend
+      dispatch(addFilmUploadImageAction(formData));
     }
   })
 
