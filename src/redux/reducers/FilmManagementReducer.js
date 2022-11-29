@@ -1,4 +1,4 @@
-import { SET_FILM_COMING_SOON, SET_FILM_LIST, SET_FILM_NOW_PLAYING } from "../actions/types/FilmManagementType"
+import { SET_FILM_COMING_SOON, SET_FILM_INFO, SET_FILM_LIST, SET_FILM_NOW_PLAYING } from "../actions/types/FilmManagementType"
 import { SET_FILM_DETAIL } from "../actions/types/TheaterManagementType";
 
 const stateDefault = {
@@ -38,6 +38,8 @@ const stateDefault = {
     arrFilmDefault: [],
 
     filmDetail: {},
+
+    filmInfo: {},
 }
 
 export const FilmManagementReducer = (state = stateDefault, action) => {
@@ -66,6 +68,11 @@ export const FilmManagementReducer = (state = stateDefault, action) => {
         case SET_FILM_DETAIL: {
             state.filmDetail = action.filmDetail;
             return {...state};
+        }
+
+        case SET_FILM_INFO: {
+            state.filmInfo = action.filmInfo;
+            return { ...state};
         }
         
 

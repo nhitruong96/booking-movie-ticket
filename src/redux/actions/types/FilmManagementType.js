@@ -1,3 +1,5 @@
 export const SET_FILM_LIST = 'SET_FILM_LIST';
 export const SET_FILM_NOW_PLAYING = 'SET_FILM_NOW_PLAYING';
 export const SET_FILM_COMING_SOON = 'SET_FILM_COMING_SOON';
+
+export const SET_FILM_INFO = 'SET_FILM_INFO';

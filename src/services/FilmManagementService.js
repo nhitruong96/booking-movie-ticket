@@ -11,11 +11,15 @@ export class FilmManagementService extends baseService {
     }
 
     getFilmList = () => {
-        return this.get(`/api/QuanLyPhim/LayDanhSachPhim?maNhom=${GROUPID}`)
+        return this.get(`/api/QuanLyPhim/LayDanhSachPhim?maNhom=${GROUPID}`);
     }
 
     addFilmUploadImage = (formData) => {
         return this.post(`/api/QuanLyPhim/ThemPhimUploadHinh`, formData);
+    }
+
+    getFilmInfo = (maPhim) => {
+        return this.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`);
     }
 }
 

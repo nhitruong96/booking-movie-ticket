@@ -1,5 +1,5 @@
 import { filmMngService } from "../../services/FilmManagementService";
-import { SET_FILM_LIST } from "./types/FilmManagementType";
+import { SET_FILM_INFO, SET_FILM_LIST } from "./types/FilmManagementType";
 
 export const getFilmListAction = () => {
 
@@ -38,6 +38,24 @@ export const addFilmUploadImageAction = (formData) => {
             console.log('resultFilmUploadImage', result.data.content)
         } catch (errors) {
             console.log(errors.response?.data)
+        }
+    }
+}
+
+export const getFilmInfoAction = (maPhim) => {
+    return async (dispatch) => {
+        try {
+            //Use param maPhim
+            const result = await filmMngService.getFilmInfo(maPhim);
+            // console.log('resultFilmInfoAction', result.data.content);
+
+            dispatch({ 
+                type: SET_FILM_INFO,
+                filmInfo: result.data.content
+            })
+
+        } catch (errors) {
+            console.log('errors', errors)
         }
     }
 }
