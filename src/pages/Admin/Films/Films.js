@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react'
 import { Table, Input, Button } from 'antd';
 import { SearchOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFilmListAction } from '../../../redux/actions/FilmManagementAction';
+import { deleteFilmAction, getFilmListAction } from '../../../redux/actions/FilmManagementAction';
 import { NavLink } from 'react-router-dom';
 import { history } from '../../../App';
 
@@ -80,11 +80,18 @@ export default function Films(props) {
     },
     {
       title: 'Action',
-      dataIndex: 'hanhDong',
+      dataIndex: 'maPhim',
       render: (text, film) => {
         return <Fragment>
-          <NavLink className="mr-2 text-2xl" to="/"><EditOutlined style={{ color: 'blue' }} /> </NavLink>
-          <NavLink className="text-2xl" to="/"><DeleteOutlined style={{ color: 'red' }} /> </NavLink>
+          <NavLink key={1} className="mr-2 text-2xl" to={`/admin/films/edit/${film.maPhim}`}><EditOutlined style={{ color: 'blue' }} /> </NavLink>
+          <span style={{cursor: 'pointer'}} key={2} className="text-2xl" onClick={() => { 
+            //Call Delete Action 
+            if(window.confirm('Do you want to delete ' + film.tenPhim)) {
+              // Call action
+              dispatch(deleteFilmAction(film.maPhim))
+            }
+
+          }}><DeleteOutlined style={{ color: 'red' }} /> </span>
         </Fragment>
       },
       sortDirections: ['descend', 'ascend'],
@@ -94,7 +101,11 @@ export default function Films(props) {
 
   const data = arrFilmDefault;
 
-  const onSearch = (value) => console.log(value);
+  const onSearch = (value) => {
+     console.log(value);
+     //Call API getFilmListAction
+     dispatch(getFilmListAction(value));
+  }
 
   function onChange(pagination, filters, sorter, extra) {
     console.log('params', pagination, filters, sorter, extra);
@@ -106,6 +117,7 @@ export default function Films(props) {
       <Button className="mb-5" onClick={() => {
         history.push('/admin/films/addnew')
       }}>Add film</Button>
+      {/* <Search placeholder="input seach text" onSearch={onSearch} style={{ width: 200 }} /> */}
       <Search
         className="mb-5"
         placeholder="input search text"
@@ -114,7 +126,7 @@ export default function Films(props) {
         size="large"
         onSearch={onSearch}
       />
-      <Table columns={columns} dataSource={data} onChange={onChange} />
+      <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"maPhim"} />
     </div>
   )
 }
