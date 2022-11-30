@@ -21,6 +21,10 @@ export class FilmManagementService extends baseService {
     getFilmInfo = (maPhim) => {
         return this.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`);
     }
+
+    updateFilmUpload = (formData) => {
+        return this.post(`/api/QuanLyPhim/CapNhatPhimUpload`, formData);
+    }
 }
 
 export const filmMngService = new FilmManagementService();

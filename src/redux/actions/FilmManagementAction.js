@@ -1,5 +1,6 @@
 import { filmMngService } from "../../services/FilmManagementService";
 import { SET_FILM_INFO, SET_FILM_LIST } from "./types/FilmManagementType";
+import { history } from '../../App';
 
 export const getFilmListAction = () => {
 
@@ -49,13 +50,30 @@ export const getFilmInfoAction = (maPhim) => {
             const result = await filmMngService.getFilmInfo(maPhim);
             // console.log('resultFilmInfoAction', result.data.content);
 
-            dispatch({ 
+            dispatch({
                 type: SET_FILM_INFO,
                 filmInfo: result.data.content
             })
 
         } catch (errors) {
             console.log('errors', errors)
+        }
+    }
+}
+
+export const updateFilmUploadAction = (formData) => {
+    return async (dispatch) => {
+        try {
+            //Use param maPhim
+            let result = await filmMngService.updateFilmUpload(formData);
+            alert('Update film successfully!');
+            console.log('resultupdateFilmUploadAction', result.data.content);
+
+            dispatch(getFilmListAction());
+            history.pushState(`/admin/films`);
+
+        } catch (errors) {
+            console.log(errors)
         }
     }
 }
