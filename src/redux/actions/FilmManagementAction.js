@@ -77,3 +77,20 @@ export const updateFilmUploadAction = (formData) => {
         }
     }
 }
+
+export const deleteFilmAction = (maPhim) => {
+    return async (dispatch) => {
+        try {
+            //Use param maPhim
+            let result = await filmMngService.deleteFilm(maPhim);
+            alert('Delete film successfully!');
+            console.log('resulDeteleFilmAction', result.data.content);
+
+            //After delete, load new film list
+            dispatch(getFilmListAction());
+
+        } catch (errors) {
+            console.log(errors)
+        }
+    }
+}

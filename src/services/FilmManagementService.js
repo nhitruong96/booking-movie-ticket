@@ -25,6 +25,10 @@ export class FilmManagementService extends baseService {
     updateFilmUpload = (formData) => {
         return this.post(`/api/QuanLyPhim/CapNhatPhimUpload`, formData);
     }
+
+    deleteFilm = (maPhim) => {
+        return this.delete(`/api/QuanLyPhim/XoaPhim?MaPhim=${maPhim}`);
+    }
 }
 
 export const filmMngService = new FilmManagementService();
