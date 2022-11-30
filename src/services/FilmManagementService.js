@@ -10,7 +10,10 @@ export class FilmManagementService extends baseService {
         return this.get(`/api/QuanLyPhim/LayDanhSachBanner`);
     }
 
-    getFilmList = () => {
+    getFilmList = (tenPhim='') => {
+        if(tenPhim.trim() !== '') {
+          return this.get(`/api/QuanLyPhim/LayDanhSachPhim?maNhom=${GROUPID}&tenPhim=${tenPhim}`);
+        }
         return this.get(`/api/QuanLyPhim/LayDanhSachPhim?maNhom=${GROUPID}`);
     }
 

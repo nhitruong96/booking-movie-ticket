@@ -2,7 +2,7 @@ import { filmMngService } from "../../services/FilmManagementService";
 import { SET_FILM_INFO, SET_FILM_LIST } from "./types/FilmManagementType";
 import { history } from '../../App';
 
-export const getFilmListAction = () => {
+export const getFilmListAction = (tenPhim='') => {
 
     return async (dispatch) => {
         try {
@@ -11,7 +11,7 @@ export const getFilmListAction = () => {
             //     method: 'GET'
             // });
 
-            const result = await filmMngService.getFilmList();
+            const result = await filmMngService.getFilmList(tenPhim);
 
             //Send to rootReducer
             console.log('resultFilmList', result)

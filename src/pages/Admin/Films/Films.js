@@ -101,7 +101,11 @@ export default function Films(props) {
 
   const data = arrFilmDefault;
 
-  const onSearch = (value) => console.log(value);
+  const onSearch = (value) => {
+     console.log(value);
+     //Call API getFilmListAction
+     dispatch(getFilmListAction(value));
+  }
 
   function onChange(pagination, filters, sorter, extra) {
     console.log('params', pagination, filters, sorter, extra);
@@ -113,6 +117,7 @@ export default function Films(props) {
       <Button className="mb-5" onClick={() => {
         history.push('/admin/films/addnew')
       }}>Add film</Button>
+      {/* <Search placeholder="input seach text" onSearch={onSearch} style={{ width: 200 }} /> */}
       <Search
         className="mb-5"
         placeholder="input search text"
