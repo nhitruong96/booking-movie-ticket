@@ -13,6 +13,13 @@ export class TheaterManagementService extends baseService {
     getMovieShowtimeInfo = (maPhim) => {
         return this.get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`)
     }
+
+    getThearterBrandInfo = () => {
+        return this.get(`/api/QuanLyRap/LayThongTinHeThongRap`)
+    }
+    getTheaterInfo = (maHeThongRap) => {
+        return this.get(`/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${maHeThongRap}`)
+    }
 }
 
 export const theaterMngService = new TheaterManagementService();

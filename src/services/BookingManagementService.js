@@ -14,6 +14,10 @@ export class BookingManagementService extends baseService {
         return this.post(`/api/QuanLyDatVe/DatVe`, bookTicketInfo)
     }
 
+    createShowtime = (showtimeInfo) => {
+        return this.post(`/api/QuanLyDatVe/TaoLichChieu`, showtimeInfo)
+    }
+
 }
 
 export const bookingMngService = new BookingManagementService();

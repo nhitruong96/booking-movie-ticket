@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
 import { Table, Input, Button } from 'antd';
-import { SearchOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { SearchOutlined, EditOutlined, DeleteOutlined, CalendarOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteFilmAction, getFilmListAction } from '../../../redux/actions/FilmManagementAction';
 import { NavLink } from 'react-router-dom';
@@ -84,14 +84,18 @@ export default function Films(props) {
       render: (text, film) => {
         return <Fragment>
           <NavLink key={1} className="mr-2 text-2xl" to={`/admin/films/edit/${film.maPhim}`}><EditOutlined style={{ color: 'blue' }} /> </NavLink>
-          <span style={{cursor: 'pointer'}} key={2} className="text-2xl" onClick={() => { 
+          <span style={{ cursor: 'pointer' }} key={2} className="text-2xl" onClick={() => {
             //Call Delete Action 
-            if(window.confirm('Do you want to delete ' + film.tenPhim)) {
+            if (window.confirm('Do you want to delete ' + film.tenPhim)) {
               // Call action
               dispatch(deleteFilmAction(film.maPhim))
             }
 
           }}><DeleteOutlined style={{ color: 'red' }} /> </span>
+
+          <NavLink key={3} className="mr-2 text-2xl" to={`/admin/films/showtime/${film.maPhim}/${film.tenPhim}`} onClick={() => {
+            localStorage.setItem('filmParams', JSON.stringify(film));
+          }}><CalendarOutlined style={{ color: 'green' }} /> </NavLink>
         </Fragment>
       },
       sortDirections: ['descend', 'ascend'],
@@ -102,9 +106,9 @@ export default function Films(props) {
   const data = arrFilmDefault;
 
   const onSearch = (value) => {
-     console.log(value);
-     //Call API getFilmListAction
-     dispatch(getFilmListAction(value));
+    console.log(value);
+    //Call API getFilmListAction
+    dispatch(getFilmListAction(value));
   }
 
   function onChange(pagination, filters, sorter, extra) {
