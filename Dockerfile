@@ -6,7 +6,7 @@ COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 # RUN npm install -g npm@9.2.0
 # RUN npm install react-scripts
 # RUN npm install --legacy-peer-deps --production --silent && mv node_modules ../
-RUN npm clean-install --legacy-peer-deps -g npm@9.2.0
+RUN npm clean-install --legacy-peer-deps
 COPY . .
 EXPOSE 3000
 RUN chown -R node /usr/src/app
