@@ -24,7 +24,7 @@ export default function Footer(props) {
             </a>
           </div>
           <div className="col-span-6 text-center md:text-left md:col-span-3">
-            <p className="pb-1 text-lg font-medium text-white">PARTNER</p>
+            <p className="pb-1 text-lg font-medium text-white">PARTNERS</p>
             <div className="grid grid-cols-3" style={{ color: '#fff' }}>
               {arrayTheaters.map((item, index) => {
                 return <div key={index}>
