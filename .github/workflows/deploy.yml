@@ -36,14 +36,10 @@ jobs:
          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-     - name: Run Jenkins Deploy Job
+     - name: Deploy Container
        uses: fjogeleit/http-request-action@v1
        with:
-         url: "http://github_actions_bmt:${{ secrets.jenkins_token }}@levantine.io/jenkins/job/Deploy-booking-movie-ticket/build"
+         url: 'https://thisper.levantine.io/build'
          method: 'POST'
-
-#    - name: Run Jenkins Deploy Job
-#      uses: fjogeleit/http-request-action@v1
-#      with:
-#        url: "http://github_actions_bmt:${{ secrets.jenkins_token }}@levantine.io/jenkins/job/Deploy-Booking-Movie-Ticket-Direct/build"
-#        method: 'POST'
+         customHeaders: '{"Content-Type": "application/json"}'
+         data: '{"job_id": "Deploy-booking-movie-ticket", "auth_key": "${{ secrets.jenkins_token }}"}'
